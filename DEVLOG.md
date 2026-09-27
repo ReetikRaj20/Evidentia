@@ -1,23 +1,24 @@
-# Evidentia — Development Log
+# Evidentia — Development Log (project-wide)
 
 A running record of what I built, what broke, how I fixed it, and what I learned.
 Times are local (Europe/Berlin). Newest entries at the top.
+
+This file covers **project-wide** work: setup, tools, Git, API keys, and decisions that affect the whole project.
+Each notebook has its **own devlog** next to it in `notebooks/`.
+
+## Notebook devlogs
+
+| Notebook | Devlog | Purpose |
+|---|---|---|
+| `01_openalex_search.ipynb` | [01_openalex_search.devlog.md](notebooks/01_openalex_search.devlog.md) | Send a claim to OpenAlex, understand the response, test how far search ranking gets towards evidence |
 
 ---
 
 ## 2026-09-27
 
-**Next:** Run a first OpenAlex search with the new test claim and look at the structure of the results (`data["results"]`).
+### 13:42 — Pushed the first OpenAlex work to GitHub
 
-### 13:32 — Changed the test claim
-
-New claim in the notebook:
-
-```Auditory attention decoding can be decoded using EEG```
-
-### 13:32 — Renamed notebook to `notebooks/01_openalex_search.ipynb`
-
-Renamed from `01_semantic_scholar_search.ipynb` with `git mv`, so Git records it as a rename and keeps the file's history, and so the name matches what the notebook now does.
+Commits: "use openalex to search for papers to verify your claim" (13:42) and "push content of 01_openalex_search.ipynb onto Github" (13:44).
 
 ### 13:32 — Created an OpenAlex account and stored the API key as an environment variable
 
@@ -29,27 +30,15 @@ Created a free account on OpenAlex, copied my API key from openalex.org/settings
 setx OPENALEX_API_KEY "<my key>"
 ```
 
-Read it in the notebook with:
-
-```python
-import os
-api_key = os.environ.get("OPENALEX_API_KEY")
-print("Key loaded:", api_key is not None)
-```
-
 **Why**
 - An environment variable lives in my Windows user settings, not in any file in the project folder, so it can never be committed or pushed to GitHub, and tools that can only see the project folder can't read it.
-- A free key gives 10x the keyless OpenAlex allowance.
+- A free key gives 10x the keyless OpenAlex allowance ($1 of usage per day, about 10,000 normal searches).
 - The key is sent as a header (`Authorization: Bearer ...`) instead of a URL parameter, so it doesn't appear in URLs or error messages.
 - I never print the key: Jupyter saves cell outputs inside the `.ipynb` file, so a printed key would be pushed with the notebook.
 
 ### 13:32 — Switched from Semantic Scholar to OpenAlex
 
 **Why:** Without a key, Semantic Scholar shares one rate limit across all keyless users, so requests often fail with `429 Too Many Requests`, and getting a personal key requires an application that isn't approved instantly. OpenAlex works straight away and a free key takes about 30 seconds to create. (I may still request a Semantic Scholar key later and compare the two.)
-
-### 12:53 — Created `notebooks/01_semantic_scholar_search.ipynb`
-
-Notebooks go in their own `notebooks/` folder, named with a two-digit number plus the question they explore, so they sort in the order I made them.
 
 ### 12:47 — Created `requirements.txt`
 
@@ -72,4 +61,4 @@ pip install requests jupyter
 **Why**
 - `python -m venv .venv` creates a private Python environment for this project, so its packages don't mix with other projects on my computer.
 - `.venv\Scripts\activate` switches the terminal into that environment.
-- `requests` is for calling web APIs (e.g. Semantic Scholar); `jupyter` is for running notebooks.
+- `requests` is for calling web APIs (e.g. OpenAlex); `jupyter` is for running notebooks.
