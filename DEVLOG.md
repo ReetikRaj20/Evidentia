@@ -11,6 +11,7 @@ Each notebook has its **own devlog** next to it in `notebooks/`.
 | Notebook | Devlog | Purpose |
 |---|---|---|
 | `01_openalex_search.ipynb` | [01_openalex_search.devlog.md](notebooks/01_openalex_search.devlog.md) | Send a claim to OpenAlex, understand the response, test how far search ranking gets towards evidence |
+| `02_openalex_search_features.ipynb` | [02_openalex_search_features.devlog.md](notebooks/02_openalex_search_features.devlog.md) | Try OpenAlex search modes, query syntax, filters, sort, select, group_by and paging on the same claim |
 
 ---
 
