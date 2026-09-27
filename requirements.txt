@@ -1,1 +1,4 @@
 requests==2.34.2
+jupyter==1.1.1
+beautifulsoup4==4.15.0
+lxml==6.1.3

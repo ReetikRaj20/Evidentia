@@ -12,10 +12,19 @@ Each notebook has its **own devlog** next to it in `notebooks/`.
 |---|---|---|
 | `01_openalex_search.ipynb` | [01_openalex_search.devlog.md](notebooks/01_openalex_search.devlog.md) | Send a claim to OpenAlex, understand the response, test how far search ranking gets towards evidence |
 | `02_openalex_search_features.ipynb` | [02_openalex_search_features.devlog.md](notebooks/02_openalex_search_features.devlog.md) | Try OpenAlex search modes, query syntax, filters, sort, select, group_by and paging on the same claim |
+| `03_fulltext_extraction.ipynb` | [03_fulltext_extraction.devlog.md](notebooks/03_fulltext_extraction.devlog.md) | Check which papers have downloadable full text, download GROBID XML, parse it into sections and paragraphs |
 
 ---
 
 ## 2026-09-27
+
+### 18:38 — New `data/` folder for downloaded papers
+
+`data/fulltext/` now holds downloaded full-text files (see notebook 03). These papers keep their original copyright, so `data/` must be added to `.gitignore` before the next commit.
+
+### 16:09 — Committed work on notebook 02
+
+Commit: "work on 02_openalex_search_features.ipynb".
 
 ### 13:42 — Pushed the first OpenAlex work to GitHub
 
